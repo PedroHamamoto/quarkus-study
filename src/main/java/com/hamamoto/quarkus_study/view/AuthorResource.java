@@ -1,6 +1,7 @@
 package com.hamamoto.quarkus_study.view;
 
-import com.hamamoto.quarkus_study.entity.Author;
+import com.hamamoto.quarkus_study.converter.AuthorConverter;
+import com.hamamoto.quarkus_study.entity.AuthorEntity;
 import com.hamamoto.quarkus_study.service.AuthorService;
 import lombok.RequiredArgsConstructor;
 import org.eclipse.microprofile.graphql.GraphQLApi;
@@ -12,14 +13,14 @@ import org.eclipse.microprofile.graphql.Name;
 public class AuthorResource {
 
     private final AuthorService authorService;
+    private final AuthorConverter authorConverter;
 
     @Mutation
-    public Author addAuthor(@Name("name") String name) {
-        // TODO: refactor to use a proper DTO
-        var author = new Author();
+    public AuthorDto addAuthor(@Name("name") String name) {
+        var author = new AuthorEntity();
         author.setName(name);
 
-        return authorService.save(author);
+        return authorConverter.toDto(authorService.save(author));
     }
 
 }

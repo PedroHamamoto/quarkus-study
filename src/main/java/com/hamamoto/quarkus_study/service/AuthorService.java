@@ -1,6 +1,6 @@
 package com.hamamoto.quarkus_study.service;
 
-import com.hamamoto.quarkus_study.entity.Author;
+import com.hamamoto.quarkus_study.entity.AuthorEntity;
 import com.hamamoto.quarkus_study.repository.AuthorRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
@@ -13,8 +13,8 @@ public class AuthorService {
     private final AuthorRepository authorRepository;
 
     @Transactional
-    public Author save(Author author) {
-        authorRepository.persist(author);
-        return author;
+    public AuthorEntity save(AuthorEntity authorEntity) {
+        authorRepository.persist(authorEntity);
+        return authorEntity;
     }
 }
