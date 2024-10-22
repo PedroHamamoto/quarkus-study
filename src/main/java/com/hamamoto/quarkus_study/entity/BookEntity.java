@@ -1,12 +1,16 @@
 package com.hamamoto.quarkus_study.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity(name = "books")
+@Setter
+@Getter
 public class BookEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +24,13 @@ public class BookEntity {
 
     private String title;
 
+    private String isbn;
+
     @ManyToOne
     @JoinColumn(name = "author_id")
-    private AuthorEntity authorEntity;
+    private AuthorEntity author;
+
+    @ManyToOne
+    @JoinColumn(name = "genre_id")
+    private GenreEntity genre;
 }

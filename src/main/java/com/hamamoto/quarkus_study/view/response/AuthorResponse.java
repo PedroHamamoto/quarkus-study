@@ -1,4 +1,4 @@
-package com.hamamoto.quarkus_study.view;
+package com.hamamoto.quarkus_study.view.response;
 
 
 import org.eclipse.microprofile.graphql.Description;
@@ -8,7 +8,7 @@ import org.eclipse.microprofile.graphql.Type;
 
 @Description("Represents an author")
 @Type("Author")
-public record AuthorDto(
+public record AuthorResponse(
         @Description("ID") @NonNull @Id String id,
         @Description("Name") @NonNull String name) {
 }

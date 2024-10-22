@@ -1,9 +1,9 @@
 package com.hamamoto.quarkus_study.repository;
 
-import com.hamamoto.quarkus_study.entity.GenreEntity;
+import com.hamamoto.quarkus_study.entity.BookEntity;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class GenreRepository implements PanacheRepository<GenreEntity> {
+public class BookRepository implements PanacheRepository<BookEntity> {
 }
