@@ -9,6 +9,6 @@ import org.eclipse.microprofile.graphql.Type;
 @Description("Represents an author")
 @Type("Author")
 public record AuthorResponse(
-        @Description("ID") @NonNull @Id String id,
+        @Description("ID") @NonNull @Id long id,
         @Description("Name") @NonNull String name) {
 }

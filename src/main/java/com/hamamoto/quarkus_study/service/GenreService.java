@@ -22,7 +22,11 @@ public class GenreService {
         return genre;
     }
 
-    public GenreEntity findById(Long id) {
+    public GenreEntity findById(long id) {
         return genreRepository.findById(id);
+    }
+
+    public GenreEntity findByBookId(long bookId) {
+        return genreRepository.findByBookId(bookId);
     }
 }

@@ -4,11 +4,9 @@ import com.hamamoto.quarkus_study.converter.AuthorConverter;
 import com.hamamoto.quarkus_study.service.AuthorService;
 import com.hamamoto.quarkus_study.view.input.AuthorCreationInput;
 import com.hamamoto.quarkus_study.view.response.AuthorResponse;
+import com.hamamoto.quarkus_study.view.response.BookResponse;
 import lombok.RequiredArgsConstructor;
-import org.eclipse.microprofile.graphql.GraphQLApi;
-import org.eclipse.microprofile.graphql.Mutation;
-import org.eclipse.microprofile.graphql.NonNull;
-import org.eclipse.microprofile.graphql.Query;
+import org.eclipse.microprofile.graphql.*;
 
 @GraphQLApi
 @RequiredArgsConstructor
@@ -23,8 +21,12 @@ public class AuthorResource {
     }
 
     @Query
-    public AuthorResponse getAuthorById(@NonNull Long id) {
+    public AuthorResponse getAuthorById(@NonNull long id) {
         return authorConverter.toResponse(authorService.findById(id));
+    }
+
+    public AuthorResponse getAuthor(@Source BookResponse bookResponse) {
+        return authorConverter.toResponse(authorService.findByBookId(bookResponse.id()));
     }
 
 }

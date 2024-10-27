@@ -6,4 +6,11 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class GenreRepository implements PanacheRepository<GenreEntity> {
+
+    public GenreEntity findByBookId(Long bookId) {
+        return find(
+                "select g from genres g join books b on b.genre.id = g.id where b.id = ?1",
+                bookId
+        ).firstResult();
+    }
 }

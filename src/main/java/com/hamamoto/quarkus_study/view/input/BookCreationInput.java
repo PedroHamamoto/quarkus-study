@@ -9,4 +9,5 @@ public record BookCreationInput(
         @Description("Title") @NonNull String title,
         @Description("ISBN") @NonNull String isbn,
         @Description("Genre ID") @NonNull @Id long genreId,
-        @Description("Author ID") @NonNull @Id long authorId) {}
+        @Description("Author ID") @NonNull @Id long authorId) {
+}

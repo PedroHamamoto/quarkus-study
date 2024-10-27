@@ -8,6 +8,7 @@ import org.eclipse.microprofile.graphql.Type;
 @Description("Represents a book")
 @Type("Book")
 public record BookResponse(
-        @Description("ID") @NonNull @Id String id,
+        @Description("ID") @NonNull @Id long id,
         @Description("Title") @NonNull String title,
-        @Description("ISBN") @NonNull String isbn) {}
+        @Description("ISBN") @NonNull String isbn) {
+}

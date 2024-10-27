@@ -21,7 +21,11 @@ public class AuthorService {
         return author;
     }
 
-    public AuthorEntity findById(Long id) {
+    public AuthorEntity findById(long id) {
         return authorRepository.findById(id);
+    }
+
+    public AuthorEntity findByBookId(long id) {
+        return authorRepository.findByBookId(id);
     }
 }

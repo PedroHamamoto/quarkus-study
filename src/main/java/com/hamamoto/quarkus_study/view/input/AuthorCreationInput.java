@@ -5,5 +5,6 @@ import org.eclipse.microprofile.graphql.NonNull;
 
 @Description("Author creation input")
 public record AuthorCreationInput(
-    @Description("Name") @NonNull String name
-){}
+        @Description("Name") @NonNull String name
+) {
+}

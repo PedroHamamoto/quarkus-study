@@ -6,4 +6,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class BookRepository implements PanacheRepository<BookEntity> {
+
+    public long countByAuthorId(long authorId) {
+        return count("author.id", authorId);
+    }
 }
