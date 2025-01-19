@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.hamamoto.quarkus_study";
+option java_outer_classname = "AuthorProto";
+
+package api;
+
+service AuthorApi {
+  rpc addAuthor (AddAuthorRequest) returns (Author) {}
+  rpc findAuthor(FindAuthorRequest) returns (Author) {}
+}
+
+message Author {
+  int64 id = 1;
+  string name = 2;
+}
+
+message AddAuthorRequest {
+  string name = 2;
+}
+
+message FindAuthorRequest {
+  int64 id = 1;
+}
+

@@ -2,8 +2,8 @@ package com.hamamoto.quarkus_study.domain.service;
 
 import com.hamamoto.quarkus_study.domain.Author;
 import com.hamamoto.quarkus_study.infrastructure.converter.AuthorConverter;
+import com.hamamoto.quarkus_study.infrastructure.dataprovider.entity.AuthorEntity;
 import com.hamamoto.quarkus_study.infrastructure.dataprovider.repository.AuthorRepository;
-import com.hamamoto.quarkus_study.presentation.graphql.dto.input.AuthorCreationInput;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +15,8 @@ public class AuthorService {
     private final AuthorConverter authorConverter;
 
     @Transactional
-    public Author save(AuthorCreationInput input) {
-        var authorEntity = authorConverter.toEntity(input);
+    public Author save(String name) {
+        var authorEntity = AuthorEntity.builder().name(name).build();
         authorRepository.persist(authorEntity);
         return authorConverter.toDomain(authorEntity);
     }

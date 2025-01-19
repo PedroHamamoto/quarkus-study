@@ -17,7 +17,7 @@ public class AuthorResolver {
 
     @Mutation
     public AuthorResponse addAuthor(AuthorCreationInput input) {
-        return authorConverter.toResponse(authorService.save(input));
+        return authorConverter.toResponse(authorService.save(input.name()));
     }
 
     @Query
