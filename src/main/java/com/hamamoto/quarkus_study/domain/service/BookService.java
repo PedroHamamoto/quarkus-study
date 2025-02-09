@@ -28,4 +28,8 @@ public class BookService {
     public long countPublishedBooksByAuthorId(long authorId) {
         return bookRepository.countByAuthorId(authorId);
     }
+
+    public Book findById(long id) {
+        return bookRepository.findById(id);
+    }
 }
