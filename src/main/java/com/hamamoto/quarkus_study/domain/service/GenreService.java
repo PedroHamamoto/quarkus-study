@@ -16,17 +16,15 @@ public class GenreService {
 
     @Transactional
     public Genre save(GenreCreationInput input) {
-        var genreEntity = genreConverter.toEntity(input);
-        genreRepository.persist(genreEntity);
-
-        return genreConverter.toDomain(genreEntity);
+        var genre = genreConverter.domain(input);
+        return genreRepository.save(genre);
     }
 
     public Genre findById(long id) {
-        return genreConverter.toDomain(genreRepository.findById(id));
+        return genreRepository.findById(id);
     }
 
     public Genre findByBookId(long bookId) {
-        return genreConverter.toDomain(genreRepository.findByBookId(bookId));
+        return genreRepository.findByBookId(bookId);
     }
 }

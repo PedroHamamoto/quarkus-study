@@ -4,7 +4,7 @@ import com.hamamoto.quarkus_study.domain.Book;
 import com.hamamoto.quarkus_study.infrastructure.converter.BookConverter;
 import com.hamamoto.quarkus_study.infrastructure.dataprovider.repository.AuthorPanacheRepository;
 import com.hamamoto.quarkus_study.infrastructure.dataprovider.repository.BookRepository;
-import com.hamamoto.quarkus_study.infrastructure.dataprovider.repository.GenreRepository;
+import com.hamamoto.quarkus_study.infrastructure.dataprovider.repository.GenrePanacheRepository;
 import com.hamamoto.quarkus_study.presentation.graphql.dto.input.BookCreationInput;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
@@ -15,12 +15,12 @@ import lombok.RequiredArgsConstructor;
 public class BookService {
     private final BookRepository bookRepository;
     private final AuthorPanacheRepository authorPanacheRepository;
-    private final GenreRepository genreRepository;
+    private final GenrePanacheRepository genrePanacheRepository;
     private final BookConverter bookConverter;
 
     @Transactional
     public Book save(BookCreationInput bookCreationInput) {
-        var genreEntity = genreRepository.findById(bookCreationInput.genreId());
+        var genreEntity = genrePanacheRepository.findById(bookCreationInput.genreId());
         var authorEntity = authorPanacheRepository.findById(bookCreationInput.authorId());
 
         var bookEntity = bookConverter.toEntity(bookCreationInput, genreEntity, authorEntity);
