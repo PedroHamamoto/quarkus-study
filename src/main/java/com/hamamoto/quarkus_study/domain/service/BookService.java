@@ -2,9 +2,7 @@ package com.hamamoto.quarkus_study.domain.service;
 
 import com.hamamoto.quarkus_study.domain.Book;
 import com.hamamoto.quarkus_study.infrastructure.converter.BookConverter;
-import com.hamamoto.quarkus_study.infrastructure.dataprovider.repository.AuthorPanacheRepository;
 import com.hamamoto.quarkus_study.infrastructure.dataprovider.repository.BookRepository;
-import com.hamamoto.quarkus_study.infrastructure.dataprovider.repository.GenrePanacheRepository;
 import com.hamamoto.quarkus_study.presentation.graphql.dto.input.BookCreationInput;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
@@ -14,20 +12,17 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class BookService {
     private final BookRepository bookRepository;
-    private final AuthorPanacheRepository authorPanacheRepository;
-    private final GenrePanacheRepository genrePanacheRepository;
+    private final AuthorService authorService;
+    private final GenreService genreService;
     private final BookConverter bookConverter;
 
     @Transactional
     public Book save(BookCreationInput bookCreationInput) {
-        var genreEntity = genrePanacheRepository.findById(bookCreationInput.genreId());
-        var authorEntity = authorPanacheRepository.findById(bookCreationInput.authorId());
+        var genre = genreService.findById(bookCreationInput.genreId());
+        var author = authorService.findById(bookCreationInput.authorId());
+        var book = bookConverter.toDomain(bookCreationInput, genre, author);
 
-        var bookEntity = bookConverter.toEntity(bookCreationInput, genreEntity, authorEntity);
-
-        bookRepository.persist(bookEntity);
-
-        return bookConverter.toDomain(bookEntity);
+        return bookRepository.save(book);
     }
 
     public long countPublishedBooksByAuthorId(long authorId) {
