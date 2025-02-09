@@ -6,8 +6,9 @@ import com.hamamoto.quarkus_study.presentation.graphql.dto.input.AuthorCreationI
 import com.hamamoto.quarkus_study.presentation.graphql.dto.response.AuthorResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.ReportingPolicy;
 
-@Mapper
+@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface AuthorConverter {
 
     AuthorResponse toResponse(Author author);
@@ -19,4 +20,6 @@ public interface AuthorConverter {
     @Mapping(target = "updatedAt", ignore = true)
     @Mapping(source = "name", target = "name")
     AuthorEntity toEntity(AuthorCreationInput input);
+
+    AuthorEntity toEntity(Author author);
 }

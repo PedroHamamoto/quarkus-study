@@ -1,15 +1,30 @@
 package com.hamamoto.quarkus_study.infrastructure.dataprovider.repository;
 
-import com.hamamoto.quarkus_study.infrastructure.dataprovider.entity.AuthorEntity;
-import io.quarkus.hibernate.orm.panache.PanacheRepository;
+import com.hamamoto.quarkus_study.domain.Author;
+import com.hamamoto.quarkus_study.infrastructure.converter.AuthorConverter;
 import jakarta.enterprise.context.ApplicationScoped;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @ApplicationScoped
-public class AuthorRepository implements PanacheRepository<AuthorEntity> {
-    public AuthorEntity findByBookId(long bookId) {
-        return find(
-                "select a from authors a join books b on b.author.id = a.id where b.id = ?1",
-                bookId
-        ).firstResult();
+public class AuthorRepository {
+
+    private final AuthorPanacheRepository authorPanacheRepository;
+    private final AuthorConverter authorConverter;
+
+    public Author findById(Long id) {
+        return authorConverter.toDomain(authorPanacheRepository.findById(id));
     }
+
+    public Author findByBookId(Long bookId) {
+        return authorConverter.toDomain(authorPanacheRepository.findByBookId(bookId));
+    }
+
+    public Author save(Author author) {
+        var authorEntity = authorConverter.toEntity(author);
+        authorPanacheRepository.persist(authorEntity);
+
+        return authorConverter.toDomain(authorEntity);
+    }
+
 }

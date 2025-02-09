@@ -2,7 +2,6 @@ package com.hamamoto.quarkus_study.domain.service;
 
 import com.hamamoto.quarkus_study.domain.Genre;
 import com.hamamoto.quarkus_study.infrastructure.converter.GenreConverter;
-import com.hamamoto.quarkus_study.infrastructure.dataprovider.entity.GenreEntity;
 import com.hamamoto.quarkus_study.infrastructure.dataprovider.repository.GenreRepository;
 import com.hamamoto.quarkus_study.presentation.graphql.dto.input.GenreCreationInput;
 import jakarta.enterprise.context.ApplicationScoped;

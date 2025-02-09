@@ -1,7 +1,7 @@
 package com.hamamoto.quarkus_study.presentation.graphql.resolver;
 
-import com.hamamoto.quarkus_study.infrastructure.converter.GenreConverter;
 import com.hamamoto.quarkus_study.domain.service.GenreService;
+import com.hamamoto.quarkus_study.infrastructure.converter.GenreConverter;
 import com.hamamoto.quarkus_study.presentation.graphql.dto.input.GenreCreationInput;
 import com.hamamoto.quarkus_study.presentation.graphql.dto.response.BookResponse;
 import com.hamamoto.quarkus_study.presentation.graphql.dto.response.GenreResponse;
