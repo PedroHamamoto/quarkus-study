@@ -18,7 +18,7 @@ public class GenreResolver {
 
     @Mutation
     public GenreResponse addGenre(GenreCreationInput input) {
-        return genreConverter.toResponse(genreService.save(input));
+        return genreConverter.toResponse(genreService.save(input.name()));
     }
 
     @Query

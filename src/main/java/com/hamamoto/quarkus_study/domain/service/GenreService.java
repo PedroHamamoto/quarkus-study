@@ -15,8 +15,8 @@ public class GenreService {
     private final GenreConverter genreConverter;
 
     @Transactional
-    public Genre save(GenreCreationInput input) {
-        var genre = genreConverter.domain(input);
+    public Genre save(String name) {
+        var genre = Genre.builder().name(name).build();
         return genreRepository.save(genre);
     }
 

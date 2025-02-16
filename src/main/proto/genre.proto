@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.hamamoto.quarkus_study.proto";
+option java_outer_classname = "GenreProto";
+
+package api;
+
+service GenreApi {
+  rpc addGenre (AddGenreRequest) returns (Genre) {}
+  rpc findGenre(FindGenreRequest) returns (Genre) {}
+}
+
+message Genre {
+  int64 id = 1;
+  string name = 2;
+}
+
+message AddGenreRequest {
+  string name = 2;
+}
+
+message FindGenreRequest {
+  int64 id = 1;
+}
+

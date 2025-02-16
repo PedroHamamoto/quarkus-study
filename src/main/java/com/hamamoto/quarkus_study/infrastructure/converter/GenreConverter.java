@@ -14,6 +14,4 @@ public interface GenreConverter {
     GenreEntity toEntity(Genre genre);
 
     Genre toDomain(GenreEntity entity);
-
-    Genre domain(GenreCreationInput input);
 }

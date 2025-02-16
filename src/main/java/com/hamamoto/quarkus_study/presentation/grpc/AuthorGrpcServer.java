@@ -1,9 +1,9 @@
 package com.hamamoto.quarkus_study.presentation.grpc;
 
-import com.hamamoto.quarkus_study.AddAuthorRequest;
-import com.hamamoto.quarkus_study.Author;
-import com.hamamoto.quarkus_study.AuthorApi;
-import com.hamamoto.quarkus_study.FindAuthorRequest;
+import com.hamamoto.quarkus_study.proto.AddAuthorRequest;
+import com.hamamoto.quarkus_study.proto.Author;
+import com.hamamoto.quarkus_study.proto.AuthorApi;
+import com.hamamoto.quarkus_study.proto.FindAuthorRequest;
 import com.hamamoto.quarkus_study.domain.service.AuthorService;
 import com.hamamoto.quarkus_study.infrastructure.converter.AuthorConverter;
 import io.quarkus.grpc.GrpcService;
@@ -15,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthorGrpcServer implements AuthorApi {
     private final AuthorService authorService;
-    private final AuthorConverter authorConverter;
 
     @Override
     @RunOnVirtualThread
