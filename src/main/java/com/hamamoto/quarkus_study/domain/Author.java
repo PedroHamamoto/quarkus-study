@@ -6,6 +6,6 @@ import lombok.Getter;
 @Builder
 @Getter
 public class Author {
-    private Long id;
-    private String name;
+  private Long id;
+  private String name;
 }

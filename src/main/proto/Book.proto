@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.hamamoto.quarkus_study.proto";
+option java_outer_classname = "BookProto";
+import public "author.proto";
+import public "genre.proto";
+
+package api;
+
+service BookApi {
+  rpc addBook (AddBookRequest) returns (Book) {}
+  rpc findBook(FindBookRequest) returns (Book) {}
+}
+
+message Book {
+  int64 id = 1;
+  string title = 2;
+  string isbn = 3;
+  Genre genre = 4;
+  Author author = 5;
+}
+
+message AddBookRequest {
+  string title = 1;
+  string isbn = 2;
+  int64 genre_id = 3;
+  int64 author_id = 4;
+}
+
+message FindBookRequest {
+  int64 id = 1;
+}

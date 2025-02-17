@@ -8,7 +8,4 @@ import org.eclipse.microprofile.graphql.Type;
 @Description("Represents a genre")
 @Type("Genre")
 public record GenreResponse(
-        @Description("ID") @NonNull @Id long id,
-        @Description("Name") @NonNull String name
-) {
-}
+    @Description("ID") @NonNull @Id long id, @Description("Name") @NonNull String name) {}

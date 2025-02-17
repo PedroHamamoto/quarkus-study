@@ -9,19 +9,19 @@ import lombok.RequiredArgsConstructor;
 @ApplicationScoped
 @RequiredArgsConstructor
 public class AuthorService {
-    private final AuthorRepository authorRepository;
+  private final AuthorRepository authorRepository;
 
-    @Transactional
-    public Author save(String name) {
-        var author = Author.builder().name(name).build();
-        return authorRepository.save(author);
-    }
+  @Transactional
+  public Author save(String name) {
+    var author = Author.builder().name(name).build();
+    return authorRepository.save(author);
+  }
 
-    public Author findById(long id) {
-        return authorRepository.findById(id);
-    }
+  public Author findById(long id) {
+    return authorRepository.findById(id);
+  }
 
-    public Author findByBookId(long bookId) {
-        return authorRepository.findByBookId(bookId);
-    }
+  public Author findByBookId(long bookId) {
+    return authorRepository.findByBookId(bookId);
+  }
 }

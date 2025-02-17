@@ -14,22 +14,20 @@ import lombok.RequiredArgsConstructor;
 @GrpcService
 @RequiredArgsConstructor
 public class GenreGrpcServer implements GenreApi {
-    private final GenreService genreService;
+  private final GenreService genreService;
+  private final GenreConverter genreConverter;
 
-    @Override
-    @RunOnVirtualThread
-    public Uni<Genre> addGenre(AddGenreRequest request) {
-        return Uni.createFrom().item(genreService.save(request.getName())).map(this::toGenreResponse);
-    }
+  @Override
+  @RunOnVirtualThread
+  public Uni<Genre> addGenre(AddGenreRequest request) {
+    return Uni.createFrom().item(genreService.save(request.getName())).map(genreConverter::toProto);
+  }
 
-    @Override
-    @RunOnVirtualThread
-    public Uni<Genre> findGenre(FindGenreRequest request) {
-        return Uni.createFrom().item(genreService.findById(request.getId())).map(this::toGenreResponse);
-    }
-
-    private Genre toGenreResponse(com.hamamoto.quarkus_study.domain.Genre genre) {
-        return Genre.newBuilder().setName(genre.getName()).setId(genre.getId()).build();
-    }
-
+  @Override
+  @RunOnVirtualThread
+  public Uni<Genre> findGenre(FindGenreRequest request) {
+    return Uni.createFrom()
+        .item(genreService.findById(request.getId()))
+        .map(genreConverter::toProto);
+  }
 }

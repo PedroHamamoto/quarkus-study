@@ -6,9 +6,9 @@ import lombok.Getter;
 @Builder
 @Getter
 public class Book {
-    private Long id;
-    private String title;
-    private String isbn;
-    private Genre genre;
-    private Author author;
+  private Long id;
+  private String title;
+  private String isbn;
+  private Genre genre;
+  private Author author;
 }

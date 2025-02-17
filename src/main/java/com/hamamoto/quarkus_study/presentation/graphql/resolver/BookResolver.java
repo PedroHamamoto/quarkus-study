@@ -21,7 +21,7 @@ public class BookResolver {
 
     @Mutation
     public BookResponse addBook(BookCreationInput input) {
-        return bookConverter.toResponse(bookService.save(input));
+        return bookConverter.toResponse(bookService.save(bookConverter.toBookCreationCommand(input)));
     }
 
     public long getPublishedBooksCount(@Source AuthorResponse authorResponse) {
